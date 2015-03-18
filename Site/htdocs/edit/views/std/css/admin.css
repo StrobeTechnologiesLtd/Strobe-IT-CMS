@@ -1,0 +1,118 @@
+/********************************************
+   HTML ELEMENTS
+********************************************/
+/* HTML bits like <p> */
+/* body, p { font: 13px  Arial, 'Trebuchet MS', Tahoma, verdana,  sans-serif; }
+h1, h2, h3 { color: #82ACCA; } */
+
+/** Side Menu **/
+#body-left ul {
+	list-style:none;
+	margin: 10px 0 15px 0;
+	padding: 0;
+	/* background: #CEDACB; */
+}
+#body-left ul li {
+	padding: 0px 10px;
+    border-bottom: 1px dashed #808080;
+}
+#body-left ul a {
+	display:block;
+	font-weight:normal;
+	color: #333;
+	height: 1.5em;	
+	padding:.3em 0 .3em 15px;
+	line-height: 1.5em;
+	text-decoration:none;
+}
+
+#body-left ul a:hover {
+	padding: .3em 0 .3em 10px;
+	border-left: 5px solid  #808080;
+	color: #808080;		
+}
+/***************/
+
+/*******************************************/
+
+
+/***********************
+        Classes
+***********************/
+.clearing { clear: both; height: 1px; } /* DIV class for clearing left an right */
+.clearing-big { clear: both; height: 5px; } /* DIV class for clearing left an right */
+p.quote {
+    font-style: italic;
+    color: #606060;
+    font-size: 14px;
+}
+.small { font-size: 11px; }
+/**********************/
+
+
+/***********************
+	  LAYOUT
+************************/
+#site-container {
+	width: 100%;
+    min-height:600px;
+	/* background-image: url(../images/backing-image.png);
+	background-repeat: repeat-x;
+	background-position: top; */
+}
+
+#site-wrapper {
+    width: 800px;
+    height: 100%;
+    margin: 0 auto;
+}
+
+#site-header {
+    /* Header Position */
+    height: 100px;
+	width: 800px;
+	background-image: url(../images/header.png);
+	background-repeat: no-repeat;
+	background-position: center top;
+	padding: 0px;
+    color: #FFF;
+}
+
+#title-div {
+    width: 300px;
+    padding-top: 10px;
+    margin: 0 auto;
+}
+
+#site-body{
+    border: 1px solid black;
+    min-height: 200px;
+}
+
+#body-left {
+    float: left;
+    padding: 10px;
+    margin-right: 10px;
+}
+
+#body-right{
+    float: left;
+    padding: 10px;
+    width: 560px;
+}
+
+#site-footer {
+    /* Footer Position */
+    background-image: url(../images/footer.png);
+    background-repeat: no-repeat;
+	background-position: center top;
+    height: 100px;
+}
+
+#loginscreen {
+    border: 2px solid blue;
+    width: 250px;
+    margin: 0 auto;
+    padding: 10px;
+}
+/***********************/

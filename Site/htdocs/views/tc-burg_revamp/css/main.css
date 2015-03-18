@@ -1,0 +1,364 @@
+/********************************************
+   AUTHOR:  			Robin Toy
+   WEBSITE:   			http://www.thorneandcarter.co.uk/
+   VERSION:             2.0          	
+ *******************************************/
+
+
+/********************************************
+   HTML ELEMENTS
+********************************************/
+/* HTML bits like <p> */
+body, p { font: 13px  Arial, 'Trebuchet MS', Tahoma, verdana,  sans-serif; }
+h1, h2, h3 { color: #CC0000; }
+h3 { font: 30px 'Brush Script MT',Phyllis,'Lucida Handwriting',cursive; }
+img { border: 0px; }
+/*******************************************/
+
+
+/***********************
+        Classes
+***********************/
+.clearing { clear: both; height: 1px; } /* DIV class for clearing left an right */
+.clearing-big { clear: both; height: 5px; } /* DIV class for clearing left an right */
+p.quote {
+    font-style: italic;
+    color: #606060;
+    font-size: 14px;
+}
+.note { font-size: smaller; }
+.bold { font-weight: bold; }
+.float-left { float: left; }
+.float-right { float: right; }
+.image_float-left  { float: left; }
+.image_float-right  { float: right; }
+/**********************/
+
+
+/***********************
+	  LAYOUT
+************************/
+body {
+    margin: 0px;
+	background-color: #808080;
+}
+
+/* Contact Us Page */
+td.name {
+	width: 175px;
+}
+td.top {
+	vertical-align: top;
+}
+.googlemap {
+	border: none;
+}
+
+
+/* Property Search Results */
+.property {
+	width: 900px;
+}
+.property-banner {
+	width: 900px;
+	height: 55px;
+	background-image: url(../images/propertylabel.png);
+	color: #FFF;
+}
+.property-bannertitle {
+	/*padding: 5px;*/
+	padding-left: 10px;
+	width: 500px;
+	float: left;
+}
+.property-bannertitle h2 {
+	color: #FFF;
+}
+.property-bannerdetail {
+	padding: 10px;
+	width: 280px;
+	float: right;
+	font-weight: bold;
+	font-size: 16px;
+}
+.property-bannerdetail img {
+	position: relative;
+	top: 5px;
+}
+.property-col1 {
+	width: 410px; /*234px;*/
+	float: left;
+	text-align: center;
+	margin-left: auto ;
+	margin-right: auto ;
+}
+.property-col1 img {
+	padding: 2px;
+	margin: 2px;
+	border: 2px solid #404040;
+}
+.property-col2 {
+	width: 245px; /*177px;*/
+	float: left;
+	padding: 2px;
+}
+.property-menu {
+	width: 240px; /*150px;*/
+	float: left;
+	margin-right: 1px;
+}
+.property-menu ul {
+    list-style: none;
+}
+.property-menu li {
+	background-image: url(../images/propertybutton.png);
+	height: 30px;
+	width: 150px;
+	margin: .5em 0;
+	text-align: center;
+}
+.property-menu li a {
+    text-decoration: none;
+	color: #FFF;
+	width: 140px;
+	line-height: 30px;
+	vertical-align: middle;
+}
+.property-menu li a span {
+}
+.propstatus {
+	position: relative;
+	margin-top: -279px;
+}
+/* End of Property Search Results */
+
+/* sidemenu Menu */
+#sidemenu-outer {
+    width: 220px;
+}
+#sidemenu-top {
+    width: 150px;
+    height: 42px;
+    margin: 0px auto;
+    background-image: url(../images/sidemenu.gif);
+    text-align: center;
+}
+#sidemenu-top p {
+    font-size: 1.5em;
+    color: #FFF;
+    padding-top: 10px;
+}
+#sidemenu-body {
+    padding-top: 10px;
+    padding-left: 40px;
+    width: 180px;
+    height: 250px;
+    background-image: url(../images/sidemenu.png);
+    background-repeat: no-repeat;
+	background-position: center top;
+}
+#sidemenu-body ul {
+    list-style: none;
+}
+#sidemenu-body li a {
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: bold;
+    color: #223A76;
+    line-height: 16px;
+}
+#sidemenu-body li a:hover {
+    border-bottom: 2px dashed #82ACCA;
+}
+/* End sidemenu Menu */
+
+#site-container {
+	width: 100%;
+    min-height:600px;
+	background-image: url(../images/pagebackground.png);
+	background-repeat: repeat-y;
+	background-position: center top;
+	background-color: #808080;
+}
+
+#site-wrapper {
+    width: 900px;
+    height: 100%;
+    margin: 0 auto;
+	background-color: #FFF;
+}
+
+#header {
+    /* Header Position */
+    height: 300px;
+	width: 900px;
+	padding: 0px;
+	margin-top: 25px;
+}
+
+#header2 {
+    /* Header Position */
+    height: 150px;
+	width: 900px;
+	padding: 0px;
+	margin-top: 25px;
+}
+
+.pics {
+    z-index: 0;
+	height: 300px;
+}
+
+#content {
+	width: 900px;
+}
+
+#content-left {
+	float: left;
+	padding: 20px;
+	width: 575px;
+	min-height: 200px;
+}
+
+#content-right {
+	float: right;
+	padding: 0px;
+}
+
+#descriptionarea {
+	padding: 10px;
+}
+
+#searchbox-header {
+    height: 46px;
+	width: 270px;
+	background-image: url(../images/searchbox-head.png);
+	background-repeat: no-repeat;
+	color: #FFF;
+	font-size: 1.5em;
+	padding-top: 10px;
+	text-align: center;
+}
+
+#searchbox-body {
+    height: 150px;
+	width: 270px;
+	background-image: url(../images/searchbox-body.png);
+	/*border: solid red 1px;*/
+	background-repeat: no-repeat;
+	position: relative;
+	padding-left: 15px;
+	padding-top: 5px;
+	top: -10px;
+}
+
+#footer {
+    /* Footer Position */
+    background-image: url(../images/footer-background.png);
+	background-repeat: no-repeat;
+    height: 60px;
+    color: #FFF;
+}
+
+#footer-left {
+    float: left;
+    margin-left: 15px;
+    margin-top: 6px;
+}
+
+#footer-left img {
+	margin-top: 6px;
+}
+
+#footer-right {
+    float: right;
+    margin-right: 15px;
+    margin-top: 12px;
+}
+
+#logo {
+    float: left;
+	position: relative;
+    /*left: 20px;*/
+	margin-top: -330px;
+    z-index: 40;
+	margin-left: 20px;
+}
+
+#logoB {
+    float: left;
+	position: relative;
+    /*left: 20px;*/
+	margin-top: -180px;
+    z-index: 40;
+	margin-left: 20px;
+}
+
+
+/* menu tabs */
+#sitemenu { 
+    width: 900px;
+    margin: 0;
+	clear: both;
+	background: #9B0000;
+	color: #ffffff;
+	font-size: 85%;
+	height: 30px;
+}
+#sitemenu ul {
+	list-style-type: none;
+	padding: 0px;
+	margin: 0px 0px 0px 0px;
+	background: #fff;
+	line-height: 2.2em;
+}
+#sitemenu li {
+	float: left;
+	text-align: center;
+	margin: 0px 0px 0px 0px;
+	width: 88px;
+	height: 30px;
+}
+#sitemenu ul li a {
+	padding: 11px 0px 11px 0px;
+	text-align: center;
+	text-decoration: none;
+	font-weight:bold;
+}
+
+#sitemenu a {
+	text-align: center;
+	color: #fff;
+	text-decoration: none;
+	font-weight:bold;
+}
+
+#sitemenu ul li a:hover { text-decoration: underline; }
+
+#sitemenu #current {
+	color: black;
+	width: 88px;
+	background: #fff url('../images/nav-tab.gif') no-repeat;
+}
+
+#sitemenu #current a {
+	color: black;
+}
+
+#sitemenu #current a:hover { text-decoration: none; }
+
+div.clearing-sitemenu { clear: both; background: #024F7B; height: 5px; } /* DIV class for clearing left an right */
+/* end menu tabs */
+
+#site-footer a { 
+	text-decoration: none; 
+	font-weight: bold;	
+	color: #000;
+}
+
+#site-footer p { 
+	text-decoration: none; 	
+	color: #000;
+    font-size: smaller;
+}
+/***********************/

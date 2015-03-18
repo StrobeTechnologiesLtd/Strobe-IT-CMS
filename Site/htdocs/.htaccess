@@ -1,0 +1,64 @@
+###################################################
+# Turn the RewriteEngine on.                      #
+###################################################
+
+RewriteEngine on
+
+
+###################################################
+# Add a leading www to domain if one is missing.  #
+###################################################
+# If this rule is used, the rewriting stops here  #
+# and then restarts from the beginning with the   #
+# new URL                                         #
+###################################################
+
+RewriteCond %{HTTP_HOST} !^www\.
+RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
+
+
+###################################################
+# Do not process images or CSS files further      #
+###################################################
+# No more processing occurs if this rule is       #
+# successful                                      #
+###################################################
+
+RewriteRule \.(css|jpe?g|gif|png|swf)$ - [L]
+
+
+###################################################
+# Add a trailing slash if needed                  #
+###################################################
+# If this rule is used, the rewriting stops here  #
+# and then restarts from the beginning with the   #
+# new URL                                         #
+###################################################
+
+RewriteCond %{REQUEST_URI} ^/[^\.]+[^/]$
+RewriteRule ^(.*)$ http://%{HTTP_HOST}/$1/ [R=301,L]
+
+
+#######################################################
+# Rewrite web pages to not have extensions etc        #
+#######################################################
+# /page/			= /index.php?id=page			  #
+# /search/Sale/		= /prop_search.php?type=Sale	  #
+# /search/Sale/2/	= /prop_search.php?type=Sale&pageno=2	  #
+# /details/10541/	= /prop_detail.php?ref=10541	  #
+#######################################################
+# No more processing occurs if any of these rules     #
+# are successful                                      #
+#######################################################
+
+rewritecond %{REQUEST_URI} !^/search/(.*)
+rewritecond %{REQUEST_URI} !^/details/(.*)
+rewritecond %{REQUEST_URI} !^/edit/(.*)
+rewritecond %{REQUEST_URI} !^/lists/(.*)
+RewriteRule (.*)/$ index.php?id=$1 [L]
+
+RewriteRule search/(.*)/(.*)/$ prop_search.php?type=$1&pageno=$2 [L]
+
+RewriteRule search/(.*)/$ prop_search.php?type=$1 [L]
+
+RewriteRule details/(.*)/$ prop_detail.php?ref=$1 [L]
