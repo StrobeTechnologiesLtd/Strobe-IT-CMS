@@ -8,6 +8,7 @@
  * Version: 1.0
  */
 
+ /*** CRAP DESCRIPTION ***/
 /*DESCRIPTION: O.k it's not really a library just a function, but it works pretty good.
 			You pass this function an array of acceptable extensions, the path you
 			are uploading to, and the file. It also allows you to specify a max file size
@@ -24,8 +25,83 @@ INSTRUCTIONS:
 				The default returns an error number but you can change the return a message or full report
 ***************************************************************************************/
 
+function get_extension($file) {
+/*
+	This function accepts a file name like image.png,
+	it then converts that into an array and returns
+	the last value in the array which is the extension.
+	
+	Example: -
+	Input	= image.png
+	Output	= png
+*/
+	$ext = end(explode(".", $file));
+	return $ext;
+}
+
+function get_filename($file) {
+/*
+	This function accepts a file name like image.png,
+	it then converts that into an array and returns
+	the first value in the array which is the file name.
+	
+	Example: -
+	Input	= image.png
+	Output	= image
+*/
+	$fname = current(explode(".", $file));
+	return $fname;
+}
+
+function file_exist($file, $path) {
+	if (file_exists( $path . '/' . $file)) {
+		return true;
+	} else {
+		return false;
+	}
+}
 
 
+
+
+
+
+
+function file_existOLD($file, $file_exts, $path) { // Path to files????
+/*
+	Excepted / Required options are: -
+	* $file = The name of the file in a string format eg. image.png
+	* $file_exts = A list of extensions supported in the form of an array
+*/
+	//$file_exts = array("jpg", "jpeg", "png");
+	//$upload_ext = end(explode(".", $file));
+	$upload_ext = get_extension($file);
+	
+	if (in_array($upload_ext, $file_exts) && file_exists( dirname(__FILE__) . '/' . $file )) {
+		return $file;
+	} else {
+		$fname = get_filename($file);
+		foreach($file_exts as $a) {
+			if (file_exists( dirname(__FILE__) . '/' . $fname . '.' . $a)) {
+				return $fname . '.' . $a;
+			} else {
+				return false;
+			}
+		}
+	}
+}
+
+/*
+if (file_exist($_GET['rn'])) {
+	$str_img = str_replace(" ", "_", file_exist($_GET['rn']));
+} else {
+	$str_img = 'thumb.png';
+}
+
+echo $str_img;
+*/
+
+/* *** OLD CRAP ***
 
 //Function to delete file
 //=======================
@@ -183,4 +259,5 @@ function do_file_upload($InputFile, $Path="", $MaxSize=8000000, $ExtsOk=array(),
 	}
     
 }
+*/
 ?>

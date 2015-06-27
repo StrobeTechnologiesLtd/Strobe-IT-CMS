@@ -12,7 +12,7 @@
 	// Function checkLogin - Checks to see if the user has been logged in
 	function checkLogin($user){
 		if (!$user) {
-			header("Location:login.php");
+			header("Location:/edit/login.php");
 			exit();
 		}
 	}
@@ -29,7 +29,7 @@
 		$r = array_search($key,$securityarray,true);
 		
 		if (!$r) {
-			header("Location:index.php");
+			header("Location:/edit/index.php");
 			exit();
 		}
 	}

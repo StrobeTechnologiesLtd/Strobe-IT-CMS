@@ -19,12 +19,13 @@ $CSSpath = TEMPLATES . get_template() . get_templateCSS();
 	    <meta name="owner" content="Strobe Technologies Ltd" />
 		
         <script type="text/javascript" src="{$__plugginDir}tiny_mce/tiny_mce.js"></script>
+		<!-- file: '../../../../{$__plugginDir}kcfinder/browse.php?opener=tinymce&type=' + type, -->
         <script type="text/javascript">
             var csspath = "<?php echo $CSSpath ?>";
         
             function openKCFinder(field_name, url, type, win) {
                 tinyMCE.activeEditor.windowManager.open({
-                    file: '../../../../{$__plugginDir}kcfinder/browse.php?opener=tinymce&type=' + type,
+                    file: '{$__plugginDir}kcfinder/browse.php?opener=tinymce&type=' + type,
                     title: 'KCFinder',
                     width: 700,
                     height: 500,
@@ -74,23 +75,25 @@ $CSSpath = TEMPLATES . get_template() . get_templateCSS();
 					{block name=leftbody}
                         <ul>
                             <?php if ($_SESSION['securelevel']==10) { ?>
-                                <li><a href="page_new.php">New Page</a></li>
+                                <li><a href="/edit/page_new.php">New Page</a></li>
                             <?php } ?>
-                            <li><a href="page_list.php">View / Edit Pages</a></li>
-                            <li><a href="filemanager.php">File Manager</a></li>
+                            <li><a href="/edit/page_list.php">View / Edit Pages</a></li>
+                            <li><a href="/edit/filemanager.php">File Manager</a></li>
                             <?php if ($_SESSION['securelevel']==10) { ?>
-                                <li><a href="page_listauth.php">Web Page Approval</a></li>
-                                <li><a href="settings.php">Website Settings</a></li>
-                                <li><a href="user_list.php">User Manager</a></li>
+                                <li><a href="/edit/page_listauth.php">Web Page Approval</a></li>
+                                <li><a href="/edit/settings.php">Website Settings</a></li>
+                                <li><a href="/edit/user_list.php">User Manager</a></li>
                             <?php } ?>
                         </ul>
 						<ul>
-							<li><a href="property_new.php">New Property</a></li>
-							<li><a href="property_list.php">View / Edit Properties</a></li>
+							<b>Modules</b>
+							<!-- Need to add logic to hid etc -->
+							<li><a href="/edit/mod/car/car.php">Car</a></li>
+							<li><a href="/edit/property.php">Property</a></li>
 						</ul>
                         <ul>
-                            <li><a href="changepass.php">Change Password</a></li>
-                            <li><a href="login.php?status=logout">Log Out</a></li>
+                            <li><a href="/edit/changepass.php">Change Password</a></li>
+                            <li><a href="/edit/login.php?status=logout">Log Out</a></li>
                         </ul>
 					{/block}
                     </div>

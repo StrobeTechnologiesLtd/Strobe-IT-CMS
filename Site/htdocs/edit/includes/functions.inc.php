@@ -5,7 +5,7 @@
  * Author: Robin Toy <robin@strobe-it.co.uk>
  * Company: Strobe Technologies Ltd T/a Strobe IT
  * File: functions.inc.php
- * Version: 1.0
+ * Version: 2.0
  */
 // This page supplies all the additional basic functions
 
@@ -48,7 +48,7 @@
 	}
 	
 	
-	// Function getFolders - Retrieves a list of directories within the requested path
+	// Function getFolders - Retrieves a list of folders within the requested path
 	function getFolders($path = '.', $addignore) { 
 		// Directories to ignore when listing output. 
 		$ignore = array( '.', '..' );
@@ -72,5 +72,29 @@
 		closedir( $dh ); 
 		
 		return $folders;
+	}
+	
+	// Function getFiles - Retrieves a list of files of type within the requested path
+	function getFiles ($directory) {
+		// create an array to hold directory list
+		$results = array();
+
+		// create a handler for the directory
+		$handler = opendir($directory);
+
+		// open directory and walk through the filenames
+		while ($file = readdir($handler)) {
+
+			// if file isn't this directory or its parent, add it to the results
+			if ($file != "." && $file != "..") {
+				$results[] = $file;
+			}
+		}
+
+		// tidy up: close the handler
+		closedir($handler);
+
+		// done!
+		return $results;
 	}
 ?>

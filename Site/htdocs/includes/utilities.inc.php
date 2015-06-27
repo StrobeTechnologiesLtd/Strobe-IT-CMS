@@ -4,7 +4,7 @@
  * Project: Strobe IT CMS
  * Author: Robin Toy <robin@strobe-it.co.uk>
  * Company: Strobe Technologies Ltd T/a Strobe IT
- * File: utiliies.inc.php
+ * File: utilities.inc.php
  * Version: 1.0
  */
 // This page needs to do the setup and configuration required by every other page
@@ -13,6 +13,7 @@
 	require_once('../config.inc.php');
 	
 	// Load Additional include files
+	// (items that do not require DB access)
 	require_once('edit/includes/functions.inc.php');
 	
 
@@ -60,6 +61,12 @@
 		$smarty->display('error.tpl');
 		exit();
 	}
+	
+	
+	// Load Additional include files
+	// (items that require DB access)
+	require_once('includes/modules.inc.php');
+	
 	
 	
 	// Get & Set Site Style

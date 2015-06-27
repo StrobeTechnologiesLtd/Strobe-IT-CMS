@@ -5,7 +5,7 @@
  * Author: Robin Toy <robin@strobe-it.co.uk>
  * Company: Strobe Technologies Ltd T/a Strobe IT
  * File: config.inc.php
- * Version: 1.1
+ * Version: 1.2
  */
 // This page config additional bits like DB settings and is stored so not accessible from the browser
 	
@@ -15,6 +15,7 @@
 	$db_host = "<DB ADDRESS / IP>";											// DNS Address or IP Address of database server
 	$db_type = "mysql";														// Type of database server
 	
-	$livepath = "/home/linweb24/t/thorneandcarter.co.uk/user/htdocs";		// Physical path / Scripting path to htdocs root
+	$livepath = "/Path/To/htdocs";											// Physical path / Scripting path to htdocs root
+	
 	$user_minpasslen = 5													// Minimum length of passwords
 ?>

@@ -39,26 +39,56 @@ RewriteCond %{REQUEST_URI} ^/[^\.]+[^/]$
 RewriteRule ^(.*)$ http://%{HTTP_HOST}/$1/ [R=301,L]
 
 
-#######################################################
-# Rewrite web pages to not have extensions etc        #
-#######################################################
-# /page/			= /index.php?id=page			  #
-# /search/Sale/		= /prop_search.php?type=Sale	  #
-# /search/Sale/2/	= /prop_search.php?type=Sale&pageno=2	  #
-# /details/10541/	= /prop_detail.php?ref=10541	  #
-#######################################################
-# No more processing occurs if any of these rules     #
-# are successful                                      #
-#######################################################
+#######################################################################
+# Rewrite web pages to not have extensions etc                        #
+#######################################################################
+# /page/					= /index.php?id=page			          #
+# /search/Sale/				= /prop_search.php?type=Sale	          # NEED TO BE CHANGED TO NEW FORMAT
+# /search/Sale/2/			= /prop_search.php?type=Sale&pageno=2	  # NEED TO BE CHANGED TO NEW FORMAT
+# /details/10541/			= /prop_detail.php?ref=10541	          # NEED TO BE CHANGED TO NEW FORMAT
+# /search/vehicle/car/		= /car_search.php?vehicle=car             #
+# /search/vehicle/car/2/	= /car_search.php?vehicle=car&pageno=2    #
+# /details/vehicle/1284/	= /car_detail.php?ref=1284                #
+#######################################################################
+# No more processing occurs if any of these rules                     #
+# are successful                                                      #
+#######################################################################
 
-rewritecond %{REQUEST_URI} !^/search/(.*)
-rewritecond %{REQUEST_URI} !^/details/(.*)
+# Property Module
+# (Rewrite Conditions)
+# --------------------
+# NEED TO BE CHANGED TO NEW FORMAT
+#rewritecond %{REQUEST_URI} !^/search/(.*)
+#rewritecond %{REQUEST_URI} !^/details/(.*)
+
+
+# Cars Module
+# (Rewrite Conditions)
+# --------------------
+rewritecond %{REQUEST_URI} !^/search/vehicle/(.*)
+rewritecond %{REQUEST_URI} !^/search/vehicle/
+rewritecond %{REQUEST_URI} !^/details/vehicle/(.*)
+
+
+# General
+# ---------------
 rewritecond %{REQUEST_URI} !^/edit/(.*)
-rewritecond %{REQUEST_URI} !^/lists/(.*)
 RewriteRule (.*)/$ index.php?id=$1 [L]
 
-RewriteRule search/(.*)/(.*)/$ prop_search.php?type=$1&pageno=$2 [L]
 
-RewriteRule search/(.*)/$ prop_search.php?type=$1 [L]
+# Property Module
+# (Rewrite Rules)
+# ----------------
+# NEED TO BE CHANGED TO NEW FORMAT
+#RewriteRule search/(.*)/(.*)/$ prop_search.php?type=$1&pageno=$2 [L]
+#RewriteRule search/(.*)/$ prop_search.php?type=$1 [L]
+#RewriteRule details/(.*)/$ prop_detail.php?ref=$1 [L]
 
-RewriteRule details/(.*)/$ prop_detail.php?ref=$1 [L]
+
+# Cars Module
+# (Rewrite Rules)
+# ---------------
+RewriteRule search/vehicle/(.*)/(.*)/$ car_search.php?vehicle=$1&pageno=$2 [L]
+RewriteRule search/vehicle/(.*)/$ car_search.php?vehicle=$1 [L]
+RewriteRule search/vehicle/ car_search.php [L]
+RewriteRule details/vehicle/(.*)/$ car_detail.php?ref=$1 [L]
