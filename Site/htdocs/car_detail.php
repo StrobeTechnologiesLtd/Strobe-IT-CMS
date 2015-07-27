@@ -27,6 +27,29 @@
 			$nav = $stmt->fetchall();
 			$smarty->assign('sitenav', $nav);
 		}
+		
+		
+		/*// SQL to retrieve vehicle feature list:
+		$q = 'SELECT id, feature FROM SIT_car_feature ORDER BY feature ASC';
+		$stmt = $pdo->prepare($q);
+		$r = $stmt->execute();
+		// If the query ran okay, fetch the records into an array
+		if ($r) {
+			$featurelist = $stmt->fetchall();
+			$smarty->assign('featurelist', $featurelist);
+		}*/
+		
+		
+		// SQL to retrieve Picture Extension list:
+		$q = 'SELECT ext FROM SIT_car_pictype WHERE enabled = "YES" ORDER BY ext ASC';
+		$stmt = $pdo->prepare($q);
+		$r = $stmt->execute();
+		// If the query ran okay, fetch the records into an array
+		if ($r) {
+			$extlist = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
+			$smarty->assign('fileext', $extlist);
+		}
+		
 				
 		$cid = $_GET['ref'];	
 		$q = 'SELECT id, vehicle, make, model, year, price, vat, fuel, transmission, colour, minidescription, features, fulldescription, miles, inven_num, special FROM SIT_car_cars WHERE inven_num = :inven_num';
@@ -54,22 +77,14 @@
 					$smarty->assign('transmission', $vehicle->getTransmission());
 					$smarty->assign('colour', $vehicle->getColour());
 					$smarty->assign('minidescription', $vehicle->getMinidescription());
-					$smarty->assign('features', $vehicle->getFeatures());
+					$dbfeatures = explode(",", $vehicle->getFeatures()); //*** Convert MySQL to PHP Array ***
+					$smarty->assign('features', $dbfeatures); //*** Send PHP Array to Page ***
 					$smarty->assign('fulldescription', $vehicle->getFulldescription());
 					$smarty->assign('miles', $vehicle->getMiles());
 					$smarty->assign('inven_num', $vehicle->getInven_num());
 					$smarty->assign('special', $vehicle->getSpecial());
 					
-					$smarty->assign('fullpath', $livepath);
-					
-					$alphalist = array();
-					for ($i=97; $i<=119; $i++) { // (65=A 90=Z)(97=a 122=z)
-						$x = chr($i);
-						$alphalist[] = $x;
-						//print $x;
-					}
-					$smarty->assign('fullpath', $livepath);
-					$smarty->assign('imagelist', $alphalist);
+					$smarty->assign('fullpath', $_SERVER['DOCUMENT_ROOT']);
 				} else {
 					throw new Exception('An invalid car Ref was provided to this page.');
 				}

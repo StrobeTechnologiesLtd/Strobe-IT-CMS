@@ -37,6 +37,17 @@
 			$pageno = 1;
 		}
 		$pageno = (int)$pageno;
+		
+		// SQL to retrieve Picture Extension list:
+		$q = 'SELECT ext FROM SIT_car_pictype WHERE enabled = "YES" ORDER BY ext ASC';
+		$stmt = $pdo->prepare($q);
+		$r = $stmt->execute();
+		
+		// If the query ran okay, fetch the records into an array
+		if ($r) {
+			$extlist = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
+			$smarty->assign('fileext', $extlist);
+		}
 
 				
 			
@@ -93,7 +104,7 @@
 				$smarty->assign('title', 'Devco MVS Search');
 		}
 			
-		// Fetch the house details:
+		// Fetch the car details:
 		$stmt = $pdo->prepare($q);
 		$r = $stmt->execute();
 		
@@ -101,7 +112,7 @@
 		if ($r) {
 			$veh = $stmt->fetchall();
 			$smarty->assign('vehlist', $veh);
-			$smarty->assign('fullpath', $livepath);
+			$smarty->assign('fullpath', $_SERVER['DOCUMENT_ROOT']);
 			$smarty->assign('vehtype', $_GET['vehicle']);
 			$smarty->assign('description', 'Devco MVS Search');
 			

@@ -38,7 +38,6 @@
 	</ul>
 {/block}**}
 {block name=body}
-	<p>testing the page!!!</p>
 	{$pagenav}
 	{foreach $vehlist as $veh}
 	{strip}
@@ -46,20 +45,54 @@
 	<div class="carstrip">
 		<table>
 			<tr>
-				<td><span class="car_label">{$veh.minidescription}</span></td>
-				<td>&nbsp;</td>
-				<td><span class="car_label">£ {$veh.price|number_format:0:".":","}</span></td>
+				<td colspan="2"><span class="car_label">{$veh.minidescription}</span></td>
+				{**<td>&nbsp;</td>**}
+				<td><span class="car_label">&pound;{$veh.price|number_format:0:".":","}</span></td>
 			</tr>
 			<tr>
 				<td>
-					{if $veh.special != ""}
-						{if $veh.special == "SPECIAL"}
-							<img src="{$__imgDir}car-box_special.png" alt="Special Box" class="CarBoxSpecial" /><img src="car_pics.php?pic={$veh.pic1}&amp;carid={$veh.id}&amp;width=150" alt="{$veh.make} {$veh.model}" class="CarBox" />
-						{else}
-							<img src="{$__imgDir}car-box_sold.png" alt="Sold Box" class="CarBoxSpecial" /><img src="car_pics.php?pic={$veh.pic1}&amp;carid={$veh.id}&amp;width=150" alt="{$veh.make} {$veh.model}" class="CarBox" />
-						{/if}
+					{assign var="displayed" value="NO"}
+				
+					{if $veh.special == "SPECIAL" && $displayed == "NO"}
+						<img src="{$__imgDir}car-box_special.png" alt="Special Box" class="CarBoxSpecial" />
+						{foreach $fileext as $ext}
+							{assign var="pic" value="$fullpath/modules/car/vehicles/c{$veh.id}p1.{$ext}"}
+							{if file_exists($pic)}
+								{assign var="displayed" value="YES"}
+								<img src="/thumb.php?pic=c{$veh.id}p1.JPG&amp;path=modules/car/vehicles&amp;width=150&amp;height=113" alt="{$veh.make} {$veh.model}" width="150px" height="113px" class="CarBox" />
+							{/if}
+						{/foreach}
+					{/if}
+					
+					{if $veh.special == "SOLD" && $displayed == "NO"}
+						<img src="{$__imgDir}car-box_sold.png" alt="Sold Box" class="CarBoxSpecial" />
+						{foreach $fileext as $ext}
+							{assign var="pic" value="$fullpath/modules/car/vehicles/c{$veh.id}p1.{$ext}"}
+							{if file_exists($pic)}
+								{assign var="displayed" value="YES"}
+								<img src="/thumb.php?pic=c{$veh.id}p1.JPG&amp;path=modules/car/vehicles&amp;width=150&amp;height=113" alt="{$veh.make} {$veh.model}" width="150px" height="113px" class="CarBox" />
+							{/if}
+						{/foreach}
+					{/if}
+					
+					{if $veh.special == "NONE" && $displayed == "NO"}
+						{foreach $fileext as $ext}
+							{assign var="pic" value="$fullpath/modules/car/vehicles/c{$veh.id}p1.{$ext}"}
+							{if file_exists($pic)}
+								{assign var="displayed" value="YES"}
+								<img src="/thumb.php?pic=c{$veh.id}p1.{$ext}&amp;path=modules/car/vehicles&amp;width=150&amp;height=113" alt="{$veh.make} {$veh.model}" width="150px" height="113px" />
+							{/if}
+						{/foreach}
 					{else}
-						<img src="car_pics.php?pic={$veh.pic1}&amp;carid={$veh.id}&amp;width=150" alt="{$veh.make} {$veh.model}" />
+						{if $displayed == "NO"}
+							{foreach $fileext as $ext}
+								{assign var="pic" value="$fullpath/modules/car/vehicles/c{$veh.id}p1.{$ext}"}
+								{if file_exists($pic)}
+									{assign var="displayed" value="YES"}
+									<img src="/thumb.php?pic=c{$veh.id}p1.{$ext}&amp;path=modules/car/vehicles&amp;width=150&amp;height=113" alt="{$veh.make} {$veh.model}" width="150px" height="113px" />
+								{/if}
+							{/foreach}
+						{/if}
 					{/if}
 				</td>
 				<td>
@@ -100,4 +133,5 @@
 	<div class="carstrip-bottom"></div>
 	{/strip}
 	{/foreach}
+	{$pagenav}
 {/block} 
